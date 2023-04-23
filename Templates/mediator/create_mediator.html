@@ -1,0 +1,68 @@
+{% extends 'mediator_base.html' %}
+{% block content %}
+
+    <main class="main-wrap">
+    <section class="content-main">
+    <div class="row">
+        <div class="col-6">
+            <div class="content-header">
+                <h2 class="content-title">Add Mediator</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-11">
+                            <form action="{% url 'Create_mediator' %}" method='post'>
+                                {% csrf_token %}
+                            <div class="mb-4">
+                                <label class="form-label">Username</label>
+                                <input name="username" type="text" placeholder="Username" class="form-control">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">First Name</label>
+                                <input name="first_name" type="text" placeholder="First Name" class="form-control">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Last Name</label>
+                                <input name="last_name" type="text" placeholder="First Name" class="form-control">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Email</label>
+                                <input name="email" type="text" placeholder="Email-Address" class="form-control">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Password</label>
+                                <input name="password1" type="password" placeholder="Password" class="form-control">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Confirm Password</label>
+                                <input name="password2" type="password" placeholder="Re-Enter Password" class="form-control">
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-md rounded font-sm hover-up">Publich</button>
+                            </div>
+                        <form>
+                        </div> <!-- col.// -->
+                    </div> <!-- row.// -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
+</section> <!-- content-main end// -->
+
+{% endblock %}

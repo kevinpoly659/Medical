@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid bg-primary my-5 py-5">
+    <div class="container py-5">
+        <div class="row gx-5">
+           
+            <div class="col-lg-4 mx-auto">
+                <div class="bg-white text-center rounded p-5">
+                    <h1 class="mb-4">Request For An account</h1>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="row-flex">
+                          
+                            <div class="col-lg-9 mt-1">
+                                <input type="text" name="full_name" class="form-control bg-light border-0" placeholder="Full Name" style="height: 55px;">
+                            </div>
+                            <div class="col-lg-9 mt-1">
+                                <input type="text" name="email" class="form-control bg-light border-0" placeholder="Email" style="height: 55px;">
+                            </div>
+
+                            <div class="col-lg-9 mt-1">
+                                <label for="type">Account Type</label>
+                                <select id="type" name="type" >
+                                  <option value="Hospital">Hospital</option>
+                                  <option value="Nurse">Nurse</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-9 mt-1">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Request</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+
+{% endblock %}

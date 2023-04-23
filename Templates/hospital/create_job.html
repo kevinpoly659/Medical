@@ -1,0 +1,65 @@
+{% extends 'hospital_base.html' %}
+{% block content %}
+
+    <main class="main-wrap">
+    <section class="content-main">
+    <div class="row">
+        <div class="col-6">
+            <div class="content-header">
+                <h2 class="content-title">Add New Job</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-11">
+                            <form action="{% url 'create_job' %}" method='post'>
+                                {% csrf_token %}
+                            <div class="mb-4">
+                                <label class="form-label">Job Title</label>
+                                <input name="title" type="text" placeholder="Job-title" class="form-control">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Location</label>
+                                <input name="location" type="text" placeholder="location" class="form-control">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Time</label>
+                                <input name="time" type="time" placeholder="Time" class="form-control">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Date</label>
+                                <input name="date" type="date" placeholder="Date" class="form-control">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">price_per_hour</label>
+                                <input name="price_per_hour" type="text" placeholder="Price_per_hour" class="form-control">
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-md rounded font-sm hover-up">Publich</button>
+                            </div>
+                        <form>
+                        </div> <!-- col.// -->
+                    </div> <!-- row.// -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+</section> <!-- content-main end// -->
+
+{% endblock %}

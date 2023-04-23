@@ -1,0 +1,112 @@
+{% extends 'hospital_base.html' %} 
+{% block content %}
+
+
+    <main class="main-wrap">
+
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Applications</h2>
+                    <p></p>
+                </div>
+            </div>
+            <div class="card mb-4">
+
+                <div class="card-body">
+                    {% for job in jobs %}
+                    <article class="itemlist">
+                        <div class="row align-items-center">
+
+                            <div class="col-lg-4 col-sm-4 col-8 flex-grow-1">
+                                <a class="itemside" href="#">
+                                    <div class="info">
+                                        <h4 class="mb-0">{{ job.nurse.user.username }}</h4>
+                                        <h6>{{ job.shift.title }}</h6>
+                                        <h6>{{ job.shift.time }}</h6>
+                                        <h6>${{ job.shift.price_per_hour }}</h6>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-2 col-sm-2 col-4 col-price"> <span>{{ job.shift.date }}</span> </div>
+                           
+                            <div class="col-lg-2 col-sm-2 col-4 col-status">
+                                <span class="badge rounded-pill alert-success">{{ job.application_status }}</span>
+                            </div>
+                            {% if job.application_status == 'PENDING' %}
+                            <div class="col-lg-2 col-sm-2 col-4 col-status">
+                                <a onclick="accept({{ job.id }})" class="btn-primary rounded p-2">Accept</a>
+                            </div>
+                            <div class="col-lg-2 col-sm-2 col-4 col-status">
+                                <a onclick="reject({{ job.id }})" class="btn-danger rounded p-2">Reject</a>
+                            </div>
+                            {% endif %}
+                        </div> <!-- row .// -->
+                    </article> <!-- itemlist  .// -->
+                    {% endfor %}
+
+
+                    <script>
+                        function accept(id){
+                            swal({
+                                title: "Accept Application ?",
+                                text: "",
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                              })
+                              .then((willDelete) => {
+                                if (willDelete) {
+                                  swal("Accepted", {
+                                    icon: "success",  
+                                  }).then(()=>{ window.location.href = "/hospital/Accept/"+id
+                                })
+                                } else {
+                                    swal("Cancelled", {icon: "error"});
+                                }
+                              });
+                            }
+                
+                            function reject(id,first_name){
+                                swal({
+                                    title: "Reject Application ?",
+                                    text: "",
+                                    icon: "warning",
+                                    buttons: true,
+                                    dangerMode: true,
+                                  })
+                                  .then((willDelete) => {
+                                    if (willDelete) {
+                                      swal("Rejected", {
+                                        icon: "success",  
+                                      }).then(()=>{ window.location.href = "/hospital/Reject/"+id
+                                    })
+                                    } else {
+                                      swal("Cancelled", {icon: "error"});
+                                    }
+                                  });
+                                }
+                
+                    </script>
+
+
+   
+
+
+
+                </div> <!-- card-body end// -->
+            </div> <!-- card end// -->
+            <div class="pagination-area mt-30 mb-50">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-start">
+                        <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                        <li class="page-item"><a class="page-link" href="#">02</a></li>
+                        <li class="page-item"><a class="page-link" href="#">03</a></li>
+                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
+                        <li class="page-item"><a class="page-link" href="#">16</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="material-icons md-chevron_right"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section> <!-- content-main end// -->
+{% endblock %}

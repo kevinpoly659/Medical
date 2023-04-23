@@ -1,0 +1,55 @@
+{% extends 'nurse_base.html' %} 
+{% block content %}
+
+
+    <main class="main-wrap">
+
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Job List</h2>
+                    <p></p>
+                </div>
+            </div>
+            <div class="card mb-4">
+
+                <div class="card-body">
+                    {% for job in jobs %}
+                    <article class="itemlist">
+                        <div class="row align-items-center">
+
+                            <div class="col-lg-4 col-sm-4 col-8 flex-grow-1 col-name">
+                                <a class="itemside" href="#">
+
+                                    
+                                    <div class="info">
+                                        <h4 class="mb-0">{{ job.title }}</h4>
+                                        <h6>{{ job.hospital }}</h6>
+                                        <h6>{{ job.time }}</h6>
+                                        <h6></h6>
+                                    </div>
+                                    
+                                </a>
+                            </div>
+                            <div class="col-lg-2 col-sm-2 col-4 col-price"> <span>$.{{ job.price_per_hour }}</span> </div>
+                            <div class="col-lg-2 col-sm-2 col-4 col-status">
+                                <span class="badge rounded-pill alert-success">Active</span>
+                            </div>
+                            <div class="col-lg-1 col-sm-2 col-4 col-date">
+                                <span>{{ job.date }}</span>
+                            </div>
+                            <div class="col-lg-2 col-sm-2 col-4 col-action text-end">
+                                <a href="{% url 'Apply' job.id %}" class="btn btn-sm font-sm rounded btn-brand">
+                                    Apply
+                                </a>
+
+                            </div>
+                        </div> <!-- row .// -->
+                    </article> <!-- itemlist  .// -->
+                    {% endfor %}
+
+                </div> <!-- card-body end// -->
+            </div> <!-- card end// -->
+
+        </section> <!-- content-main end// -->
+{% endblock %}

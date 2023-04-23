@@ -1,0 +1,50 @@
+{% extends 'mediator_base.html' %} 
+{% block content %}
+
+
+    <main class="main-wrap">
+
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Applied Jobs</h2>
+                    <p></p>
+                </div>
+            </div>
+            <div class="card mb-4">
+
+                <div class="card-body">
+                    {% for job in jobs %}
+                    <article class="itemlist">
+                        <div class="row align-items-center">
+
+                            <div class="col-lg-4 col-sm-4 col-8 flex-grow-1">
+                                <a class="itemside" href="#">
+                                    <div class="info">
+                                        <h4 class="mb-0">{{ job.shift.title }}</h4>
+                                        <h6></h6>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-2 col-sm-2 col-4 col-price"> <span>{{ job.time }}</span> </div>
+                            <div class="col-lg-2 col-sm-2 col-4 col-price"> <span>{{ job.location }}</span> </div>
+                            <div class="col-lg-2 col-sm-2 col-4 col-price"> <span>{{ job.date }}</span> </div>
+
+
+                        </div> <!-- row .// -->
+                    </article> <!-- itemlist  .// -->
+                    {% endfor %}
+
+
+                  
+
+
+
+
+
+
+                </div> <!-- card-body end// -->
+            </div> <!-- card end// -->
+
+        </section> <!-- content-main end// -->
+{% endblock %}

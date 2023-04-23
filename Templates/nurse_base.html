@@ -1,0 +1,72 @@
+
+{% load static %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <title>Nurse Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <link href="{% static 'assets_hospital/css/main.css' %}" rel="stylesheet" type="text/css" />
+</head>
+<aside class="navbar-aside" id="offcanvas_aside">
+    <div class="aside-top">
+        <a href="index.html" class="brand-wrap">
+            <h1> NURSE ACCOUNT <h1/>
+        </a>
+        <div>
+            <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+        </div>
+    </div>
+    <nav>
+        <ul class="menu-aside">
+            <li class="menu-item">
+                <a class="menu-link" href="{% url 'Nurses' %}"> <i class="icon material-icons md-home"></i>
+                    <span class="text">Job List</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="{% url 'Work_applied' %}"> <i class="icon material-icons md-shopping_bag"></i>
+                    <span class="text">Applied Jobs</span>
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <ul class="menu-aside">
+            <li class="menu-item">
+                <a class="menu-link" href="{% url 'Logout' %}"> <i class="icon material-icons md-local_offer"></i>
+                    <span class="text"> Logout </span>
+                </a>
+            </li>
+        </ul>
+        <br>
+        <br>
+    </nav>
+</aside>
+<body>
+    <div class="screen-overlay"></div>
+
+{% block content %}
+{% endblock %}
+
+
+</main>
+<script src="{% static 'assets_hospital/js/vendors/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'assets_hospital/js/vendors/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets_hospital/js/vendors/select2.min.js' %}"></script>
+<script src="{% static 'assets_hospital/js/vendors/perfect-scrollbar.js' %}"></script>
+<script src="{% static 'assets_hospital/js/vendors/jquery.fullscreen.min.js' %}"></script>
+<script src="{% static 'assets_hospital/js/main.js' %}" type="text/javascript"></script>
+</body>
+
+
+</html>

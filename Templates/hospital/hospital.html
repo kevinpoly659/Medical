@@ -1,0 +1,80 @@
+{% extends 'hospital_base.html' %} 
+{% block content %}
+
+
+    <main class="main-wrap">
+
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Job List</h2>
+                    <p></p>
+                </div>
+                <div>
+                    <a href="{% url 'create_job' %}" class="btn btn-primary btn-sm rounded">Create new</a>
+                </div>
+            </div>
+            <div class="card mb-4">
+
+                <div class="card-body">
+                    {% for job in jobs %}
+                    <article class="itemlist">
+                        <div class="row align-items-center">
+
+                            <div class="col-lg-4 col-sm-4 col-8 flex-grow-1 col-name">
+                                <a class="itemside" href="#">
+
+                                    <div class="info">
+                                        <h4 class="mb-0">{{ job.title }}</h4>
+                                        <h6>{{ job.location }}</h6>
+                                        <h6>{{ job.time }}</h6>
+                                        <h6></h6>
+                                    </div>
+                                    
+                                </a>
+                            </div>
+                            <div class="col-lg-2 col-sm-2 col-4 col-price"> <span>$.{{ job.price_per_hour }}</span> </div>
+
+                            <div class="col-lg-1 col-sm-2 col-4 col-date">
+                                <span>{{ job.date }}</span>
+                            </div>
+                            <div class="col-lg-2 col-sm-2 col-4 col-action text-end">
+                                <a href="{% url 'Applications' job.id %}" class="btn btn-sm font-sm rounded btn-brand">
+                                    <i class="material-icons md-edit"></i> View Applications
+                                </a>
+                                <a onclick="delete_job({{ job.id }})" class="btn btn-sm font-sm btn-light rounded">
+                                    <i class="material-icons md-delete_forever"></i> Delete
+                                </a>
+                            </div>
+                        </div> <!-- row .// -->
+                    </article> <!-- itemlist  .// -->
+                    
+                    {% endfor %}
+
+                    <script>
+                        function delete_job(id){
+                            swal({
+                                title: "Delete Job ?",
+                                text: "",
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                              })
+                              .then((willDelete) => {
+                                if (willDelete) {
+                                  swal("Delete", {
+                                    icon: "success",  
+                                  }).then(()=>{ window.location.href = "/hospital/Delete_job/"+id
+                                })
+                                } else {
+                                    swal("Cancelled", {icon: "error"});
+                                }
+                              });
+                            }
+                        </script>
+                    
+                </div> <!-- card-body end// -->
+            </div> <!-- card end// -->
+
+        </section> <!-- content-main end// -->
+{% endblock %}
